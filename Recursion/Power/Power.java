@@ -2,16 +2,28 @@ import java.util.Scanner;
 
 class Power {
 
-    static long Pow(int num, int pow ) {
+    static Double Pow(Double num, int pow ) {
         if (pow == 0) {
-            return 1;
+            return 1.0;
         }
-        return num*Pow(num, pow-1);
+
+        if (pow < 0) {
+            num = 1/num;
+            pow *= -1;
+        }
+
+        Double temp = Pow(num, pow/2);
+
+        if(pow % 2 == 1) {
+            return temp * temp * num;
+        } else {
+            return temp * temp;
+        }
     }
     public static void main(String args[]) {
         System.out.print("Enter number: ");
         Scanner input = new Scanner(System.in);
-        int number = input.nextInt();
+        Double number = input.nextDouble();
         System.out.print("Enter power: ");
         int pwr = input.nextInt();
         System.out.print(number + "**" + pwr + " = "+ Pow(number, pwr));
