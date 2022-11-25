@@ -1,38 +1,38 @@
 //
-//  PowerSet
+//  ReverseArray
 //
 //  Created by Feialoh Francis on 23/11/22.
 //
 
 import Foundation
 
-class PowerSet {
+class Reverse {
     
+    var num: Int
     var arr: [Int]
     
-    init(arr: [Int]) {
+    init(num: Int, arr: [Int]) {
+        self.num = num
         self.arr = arr
     }
     
-    func powerSet (_ i: Int = 0, _ subset: [Int] = [Int](), _ ans: [[Int]] = [[Int]]()) -> [[Int]] {
-        var ans = ans
-        var subset = subset
-        if arr.count == i {
-            ans.append(subset)
-            return ans
+    func reverse(_ l: Int, _ r: Int) -> [Int] {
+        var arr = self.arr
+        if l > r {
+            return arr
         }
+        arr.swapAt(l, r)
+        self.arr = arr
+        return reverse(l+1, r-1)
+    }
     
-        subset.append(arr[i])
-        ans = powerSet(i+1, subset, ans)
-        subset.remove(at: subset.count-1)
-        ans = powerSet(i+1, subset, ans)
-        return ans
+    func reverseArray(_ pos: Int) -> [Int] {
+        return reverse(0, self.arr.count-1)
     }
 }
 
-var powerSet = [[Int]]()
 var arr = [Int]()
-print("Enter number of elements in power set: ")
+print("Enter number of elements to be entered: ")
 let num = Int(readLine() ?? "0")
 
 if let num = num {
@@ -44,8 +44,8 @@ if let num = num {
         }
     }
     
-    print("Array elements: \(arr)")
-    let sol = PowerSet(arr: arr)
-    powerSet = sol.powerSet()
-    print("Power set: \(powerSet)")
+    print("Array before: \(arr)")
+    let sol = Reverse(num: num, arr: arr)
+    arr = sol.reverseArray(0)
+    print("Array after: \(arr)")
 }

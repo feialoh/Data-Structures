@@ -14,7 +14,7 @@ class PowerSet {
         self.arr = arr
     }
     
-    func helper (_ i: Int, _ subset: [Int], _ ans: [[Int]]) -> [[Int]] {
+    func powerSet (_ i: Int = 0, _ subset: [Int] = [Int](), _ ans: [[Int]] = [[Int]]()) -> [[Int]] {
         var ans = ans
         var subset = subset
         if arr.count == i {
@@ -23,28 +23,10 @@ class PowerSet {
         }
     
         subset.append(arr[i])
-        ans = helper(i+1, subset, ans)
+        ans = powerSet(i+1, subset, ans)
         subset.remove(at: subset.count-1)
-        ans = helper(i+1, subset, ans)
+        ans = powerSet(i+1, subset, ans)
         return ans
-    }
-    
-    func powerSet() ->  [[Int]] {
-        return helper(0, [Int](), [[Int]]())
-    }
-    
-    func reverse(_ l: Int, _ r: Int) -> [Int] {
-        var arr = self.arr
-        if l > r {
-            return arr
-        }
-        arr.swapAt(l, r)
-        self.arr = arr
-        return reverse(l+1, r-1)
-    }
-    
-    func reverseArray(_ pos: Int) -> [Int] {
-        return reverse(0, self.arr.count-1)
     }
 }
 
