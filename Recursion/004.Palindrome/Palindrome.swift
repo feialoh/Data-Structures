@@ -1,6 +1,5 @@
 //
-//  main.swift
-//  Factorial
+//  Palindrome
 //
 //  Created by Feialoh Francis on 23/11/22.
 //
