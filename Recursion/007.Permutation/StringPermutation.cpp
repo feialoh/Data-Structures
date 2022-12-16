@@ -8,7 +8,10 @@ void helper(int pos, string &str, vector<string> &ans){
     if (pos >= str.size()){
         ans.push_back(str);
     }
+    unordered_set <char> m;
     for (int i=pos; i<str.size(); i++){
+        if (m.find(str[i]) != m.end()) continue;
+        m.insert(str[i]);
         swap(str[i],str[pos]);
         helper(pos+1, str, ans);
         swap(str[i],str[pos]);
